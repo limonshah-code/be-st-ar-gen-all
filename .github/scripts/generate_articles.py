@@ -31,8 +31,8 @@ KEYWORDS_FILE = "data/keywords.txt"
 PROCESSED_KEYWORDS_FILE = "data/processed_keywords.txt"
 GENERATED_KEYWORDS_FILE = "data/keywords-generated.txt"  # New file for successfully generated keywords
 LINKS_FILE = "data/links.txt"  # New file for tracking links
-ARTICLES_PER_RUN = 2
-TOP_LINKS_COUNT = 20  # Number of top relevant links to include
+ARTICLES_PER_RUN = 25
+TOP_LINKS_COUNT = 1  # Number of top relevant links to include
 
 # Ensure output directories exist
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -368,7 +368,7 @@ def generate_article(prompt):
         try:
             current_key = api_key_manager.get_current_key()
             client = genai.Client(api_key=current_key)
-            model = "gemini-2.5-flash-preview-05-20"
+            model = "gemini-2.5-flash"
             contents = [types.Content(role="user", parts=[types.Part.from_text(text=prompt)])]
             generate_content_config = types.GenerateContentConfig(
                 temperature=1,
